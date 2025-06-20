@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit form</title>
+  </head>
+  <body>
+    <h1>Edit User</h1>
+    <form action="/update/<%= index %>" method="post">
+      <label>Car Name:</label>
+        <input type="text" name="carname"  value="<%= user.carname %>"  placeholder="Enter car name" required /><br />
+        <label>Car Color:</label>
+        <input type="text" name="carcolor" value="<%= user.carcolor %>"placeholder="Enter car carcolor" required /><br />
+         <label>Car Model:</label>
+        <input type="number" name="carmodel" value="<%= user.carmodel %>" placeholder="Enter car carmodel" required /><br />
+      <button type="submit">Update</button>
+    </form>
+  </body>
+</html>
