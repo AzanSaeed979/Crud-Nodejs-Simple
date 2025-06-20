@@ -3,17 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit form</title>
+    <title>Edit Form</title>
   </head>
   <body>
-    <h1>Edit User</h1>
-    <form action="/update/<%= index %>" method="post">
+    <h1>Edit Form</h1>
+    <form action="/update/<%= id %>" method="post">
       <label>Car Name:</label>
-        <input type="text" name="carname"  value="<%= user.carname %>"  placeholder="Enter car name" required /><br />
-        <label>Car Color:</label>
-        <input type="text" name="carcolor" value="<%= user.carcolor %>"placeholder="Enter car carcolor" required /><br />
-         <label>Car Model:</label>
-        <input type="number" name="carmodel" value="<%= user.carmodel %>" placeholder="Enter car carmodel" required /><br />
+      <input
+        type="text"
+        name="carname"
+        value="<%= user.carname %>"
+        required
+      /><br />
+      <label>Car Color:</label>
+      <input
+        type="text"
+        name="carcolor"
+        value="<%= user.carcolor %>"
+        required
+      /><br />
+      <label>Car Model:</label>
+      <input
+        type="number"
+        name="carmodel"
+        value="<%= user.carmodel %>"
+        required
+      /><br />
       <button type="submit">Update</button>
     </form>
   </body>

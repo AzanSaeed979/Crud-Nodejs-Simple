@@ -1,51 +1,28 @@
 const express = require("express");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const userRoutes = require("./routes/userRoutes");
+
+dotenv.config();
 const app = express();
-const port = 4000;
 
+// Middleware
 app.set("view engine", "ejs");
-app.use(express.urlencoded({ extented: true }));
+app.use(express.urlencoded({ extended: true }));
 
-let users = [];
+// Routes
+app.use("/", userRoutes);
 
-app.get("/", (req, res) => {
-  res.render("user", { users });
-});
+// MongoDB Connection
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log("✅ MongoDB connected"))
+.catch(err => console.log("❌ MongoDB error:", err));
 
-app.post("/create", (req, res) => {
-  const carname = req.body.carname;
-  const carcolor = req.body.carcolor;
-  const carmodel = req.body.carmodel;
-
-  users.push({
-    carname,
-    carcolor,
-    carmodel,
-  });
-
-  res.redirect("/");
-});
-
-// For Delete
-
-app.get("/delete/:index", (req, res) => {
-  const index = req.params.index;
-  users.splice(index, 1);
-  res.redirect("/");
-});
-
-// show edit form
-app.get("/edit/:index", (req, res) => {
-  const index = req.params.index;
-  res.render("edit", { user: users[index], index });
-});
-
-app.post("/update/:index", (req, res) => {
-  const index = req.params.index;
-  const { carname,carcolor, carmodel  } = req.body;
-  users[index] = { carname, carmodel, carmodel };
-  res.redirect("/");
-});
-
-app.listen(port, () => {
-  console.log(`Server is running at port ${port}`);
+// Server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
 });

@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crud App</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crud Nodejs App</title>
 </head>
 <body>
-    <form action="/create" method="post">
-      <h1>Garage Management Crud App</h1>
-        <label>Car Name:</label>
-        <input type="text" name="carname" id="carname" placeholder="Enter car name" required /><br />
-        <label>Car Color:</label>
-        <input type="text" name="carcolor" id="carcolor" placeholder="Enter car carcolor" required /><br />
-         <label>Car Model:</label>
-        <input type="number" name="carmodel" id="carmodel" placeholder="Enter car carmodel" required /><br />
-        <button type="submit">Add User</button>
-    </form>
+  <h1>Nodejs Crud App</h1>
+  <form action="/create" method="post">
+    <label>Car Name:</label>
+    <input type="text" name="carname" placeholder="Enter Your Car Name..." required /><br />
+    <label>Car Color:</label>
+    <input type="text" name="carcolor" placeholder="Enter Your Car Color..." required /><br />
+    <label>Car Model:</label>
+    <input type="number" name="carmodel" placeholder="Enter Your Car Model..." required /><br />
+    <button type="submit">Submit</button>
+  </form>
 
-
-      <h1>Users Data</h1>
-      <ul>
-        <%
-          users.forEach((user, index) => { %>
-             <strong><li><%= user.carname %></li></strong>
-             <strong><li><%= user.carcolor %></li></strong>
-             <strong><li><%= user.carmodel %></li></strong>
-             <a href="/delete/<%= index %>">Delete</a>
-              <a href="/edit/<%= index %>">Edit</a>
-          <% })
-        %>
-      </ul>
+  <h2>Submitted Data:</h2>
+  <ul>
+    <% users.forEach((user) => { %>
+      <li>
+        <strong>Name:</strong> <%= user.carname %> |
+        <strong>Color:</strong> <%= user.carcolor %> |
+        <strong>Model:</strong> <%= user.carmodel %> |
+        <a href="/edit/<%= user._id %>">Edit</a> |
+        <a href="/delete/<%= user._id %>">Delete</a>
+      </li>
+    <% }) %>
+  </ul>
 </body>
 </html>
